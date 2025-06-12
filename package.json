@@ -10,14 +10,20 @@
     "start:dev": "tsx src/index.ts --watch",
     "start": "node build/index.js",
     "format": "prettier . --write",
-    "format-check": "prettier . --check"
+    "format-check": "prettier . --check",
+    "release": "semantic-release"
   },
   "devDependencies": {
+    "@codedependant/semantic-release-docker": "^5.1.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-multiline-arrays": "^4.0.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.15",
+    "semantic-release": "^24.2.5",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
   }
