@@ -1,0 +1,14 @@
+services:
+  importer:
+    build:
+      context: .
+      target: dev
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: 2
+    restart: unless-stopped
