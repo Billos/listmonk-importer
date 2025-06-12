@@ -29,5 +29,8 @@
     "semantic-release": "^24.2.5",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@goauthentik/api": "^2025.6.1-1749515784"
   }
 }
