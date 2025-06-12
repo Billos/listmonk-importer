@@ -12,7 +12,8 @@
     "format": "prettier . --write",
     "format-check": "prettier . --check",
     "release": "semantic-release",
-    "types:api:listmonk:generate": "openapi --input https://listmonk.app/docs/swagger/collections.yaml --output ./src/listmonk"
+    "types:api:listmonk:generate": "openapi --input https://listmonk.app/docs/swagger/collections.yaml --output ./src/listmonk",
+    "types:api:authentik:generate": "openapi --input https://authentik.company/api/v3/schema/ --output ./src/authentik"
   },
   "devDependencies": {
     "@codedependant/semantic-release-docker": "^5.1.1",
@@ -31,7 +32,5 @@
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
   },
-  "dependencies": {
-    "@goauthentik/api": "^2025.6.1-1749515784"
-  }
+  "dependencies": {}
 }

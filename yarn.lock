@@ -298,11 +298,6 @@
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
   integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
 
-"@goauthentik/api@^2025.6.1-1749515784":
-  version "2025.6.1-1749515784"
-  resolved "https://registry.yarnpkg.com/@goauthentik/api/-/api-2025.6.1-1749515784.tgz#feb5f7b9fb223b71d4a7b08c9cbfd439356e7368"
-  integrity sha512-0yN4vJ2/grtNz6OVNMW34gd6TylBeyTSoH1Zlr7e2yeAbg+oZB8WmpLLCZGqvOguYGN6vYEYrPQF1k3RJohmlQ==
-
 "@ianvs/prettier-plugin-sort-imports@^4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ianvs/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.4.2.tgz#b4e0fa40249ffe5b80a3d65b294b1c49f0a7757e"
