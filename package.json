@@ -4,5 +4,14 @@
   "main": "index.js",
   "repository": "git@github.com:Billos/listmonk-importer.git",
   "author": "billos <brendan@billos.fr>",
-  "license": "GNU GPL"
+  "license": "GNU GPL",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "start:dev": "tsx src/index.ts --watch",
+    "start": "node build/index.js"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.2",
+    "typescript": "^5.8.3"
+  }
 }
