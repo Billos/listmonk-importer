@@ -6,4 +6,4 @@ services:
     environment:
       NODE_ENV: development
       LOG_LEVEL: 2
-    restart: unless-stopped
+    restart: no
