@@ -1,6 +1,4 @@
-import { Configuration, CoreApi } from "@goauthentik/api"
-
-import { getAuthentikUsers, getGroup, getGroups } from "./importers/authentik"
+import { getAuthentikUsers, getGroups } from "./importers/authentik"
 import { ListsService, NewList, Subscriber, SubscriberQueryRequest, SubscribersService } from "./listmonk"
 
 async function importGroupsIntoListmonk() {
