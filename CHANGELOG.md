@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/Billos/listmonk-importer/compare/1.0.0...1.1.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* **authentik:** use openAPI rather than dependency ([0b35f67](https://github.com/Billos/listmonk-importer/commit/0b35f676afc46efc2d4097ed0828165d76876b58))
+* **docker-compose:** corriger la politique de redémarrage à 'no' ([552c663](https://github.com/Billos/listmonk-importer/commit/552c6634bc0bc1141a9d3166fda608ddfb193e33))
+* **env:** update env default file ([940e90d](https://github.com/Billos/listmonk-importer/commit/940e90d29f2e4073eb9b72f2ea71a875c2d841b6))
+
+
+### Features
+
+* **api:** generate OpenAPI for Authentik ([7758f26](https://github.com/Billos/listmonk-importer/commit/7758f2642ea52be5f503de0ab2455893d7797621))
+* **api:** use authentik with openApi rather than a dependency ([264989f](https://github.com/Billos/listmonk-importer/commit/264989fb1ca22f653a613d557e00443830adb091))
+
 # 1.0.0 (2025-06-12)
 
 
