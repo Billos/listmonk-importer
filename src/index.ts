@@ -1,22 +1,34 @@
 import { Configuration, CoreApi } from "@goauthentik/api"
 
-import { Subscriber, SubscriberQueryRequest, SubscribersService } from "./listmonk"
+import { getAuthentikUsers, getGroup, getGroups } from "./importers/authentik"
+import { ListsService, NewList, Subscriber, SubscriberQueryRequest, SubscribersService } from "./listmonk"
+
+async function importGroupsIntoListmonk() {
+  const groups = await getGroups()
+  const {
+    data: { results: lists },
+  } = await ListsService.getLists()
+
+  for (const group of groups) {
+    const list = lists.find((item) => item.name === group.name)
+    if (!list) {
+      console.log(`Creating new list for group: ${group.name}`)
+      await ListsService.createList({
+        name: group.name,
+        description: `Imported from Authentik group: ${group.name}`,
+        type: NewList.type.PRIVATE,
+      })
+    }
+  }
+}
 
 async function main() {
-  // Fetch users from Authentik
-  const authentikCfg = new Configuration({
-    basePath: process.env.AUTHENTIK_URL + "/api/v3",
-    accessToken: process.env.AUTHENTIK_TOKEN,
-  })
-  const authentikApi = new CoreApi(authentikCfg)
-
-  const excludedUsers = process.env.AUTHENTIK_EXCLUDED_USERS?.split(",") || []
-
-  const { results } = await authentikApi.coreUsersList()
-  const users = results.filter((user) => user.email && user.email.length > 0 && !excludedUsers.includes(user.name))
+  const users = await getAuthentikUsers()
   const {
     data: { results: subscribers },
   } = await SubscribersService.getSubscribers()
+
+  await importGroupsIntoListmonk()
 
   for (const user of users) {
     // Check if user exists in Listmonk
@@ -25,8 +37,6 @@ async function main() {
       console.log(`Creating subscriber for user: ${user.email} (${user.name})`)
       const { data } = await SubscribersService.createSubscriber({ email: user.email, name: user.name })
       subscriber = data
-    } else {
-      console.log(`Subscriber already exists for user: ${user.email}`)
     }
 
     // Set user as enable in Listmonk
@@ -36,13 +46,22 @@ async function main() {
     }
 
     // Add user to lists
-    const listsToAdd: number[] = process.env.LISTMONK_LIST_IDS.split(",").map(Number)
-    console.log(`Adding subscriber ${subscriber.email} to lists: ${listsToAdd.join(", ")}`)
-    for (const listId of listsToAdd) {
+    const groups = await getGroups()
+    const {
+      data: { results: lists },
+    } = await ListsService.getLists()
+    const groupsIdsOfUser = user.groups || []
+    const groupsOfUser = groupsIdsOfUser.map((groupId) => groups.find((group) => group.pk === groupId))
+    const listOfUser = subscriber.lists || []
+
+    const groupsToAdd = groupsOfUser.filter((group) => group && !listOfUser.some((list) => list.name === group.name))
+    for (const group of groupsToAdd) {
+      const list = lists.find((item) => item.name === group.name)
+      console.log(`Adding subscriber ${subscriber.email} to list: ${list.name}`)
       await SubscribersService.manageSubscriberLists({
         ids: [subscriber.id],
         action: SubscriberQueryRequest.action.ADD,
-        target_list_ids: [listId],
+        target_list_ids: [list.id],
         status: SubscriberQueryRequest.status.CONFIRMED,
       })
     }
