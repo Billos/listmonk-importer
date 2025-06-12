@@ -1,0 +1,8 @@
+{
+  "name": "listmonk-importer",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Billos/listmonk-importer.git",
+  "author": "billos <brendan@billos.fr>",
+  "license": "GNU GPL"
+}
